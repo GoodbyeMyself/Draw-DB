@@ -353,7 +353,7 @@ const features = [
         Speed up development with keyboard shortcuts. See all available
         shortcuts
         <Link
-          to={`${socials.docs}/shortcuts`}
+          to={`/shortcuts`}
           className="ms-1.5 text-blue-500 hover:underline"
         >
           here

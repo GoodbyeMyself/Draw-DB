@@ -3,4 +3,5 @@ User-agent: *
 Allow: /
 Allow: /editor
 Allow: /templates
+Allow: /shortcuts
 Disallow: /bug-report
