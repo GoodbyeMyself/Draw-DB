@@ -1,21 +1,3 @@
-<div align="center">
-  <sup>Special thanks to:</sup>
-  <br>
-  <a href="https://www.warp.dev/drawdb/" target="_blank">
-    <img alt="Warp sponsorship" width="280" src="https://github.com/user-attachments/assets/c7f141e7-9751-407d-bb0e-d6f2c487b34f">
-    <br>
-    <b>Next-gen AI-powered intelligent terminal for all platforms</b>
-  </a>
-</div>
-
-<br/>
-<br/>
-
-<div align="center">
-    <img width="64" alt="drawdb logo" src="./src/assets/icon-dark.png">
-    <h1>drawDB</h1>
-</div>
-
 <h3 align="center">Free, simple, and intuitive database schema editor and SQL generator.</h3>
 
 <div align="center" style="margin-bottom:12px;">
