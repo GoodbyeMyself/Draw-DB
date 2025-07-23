@@ -1,11 +1,14 @@
 import { Input } from "@douyinfe/semi-ui";
+import { useTranslation } from "react-i18next";
 
 export default function Rename({ title, setTitle }) {
-    return (
-        <Input
-            placeholder="Diagram name"
-            value={title}
-            onChange={(v) => setTitle(v)}
-        />
-    );
+  const { t } = useTranslation();
+
+  return (
+    <Input
+      placeholder={t("name")}
+      defaultValue={title}
+      onChange={(v) => setTitle(v)}
+    />
+  );
 }

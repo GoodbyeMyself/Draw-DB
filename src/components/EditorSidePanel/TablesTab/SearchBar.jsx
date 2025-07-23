@@ -1,50 +1,65 @@
-import { useState } from "react";
-import { useSelect, useTables } from "../../../hooks";
-import { AutoComplete } from "@douyinfe/semi-ui";
+import { useMemo } from "react";
+import { useSelect } from "../../../hooks";
+import { TreeSelect } from "@douyinfe/semi-ui";
 import { IconSearch } from "@douyinfe/semi-icons";
+import { ObjectType } from "../../../data/constants";
+import { useTranslation } from "react-i18next";
 
-export default function SearchBar() {
+export default function SearchBar({ tables }) {
+  const { setSelectedElement } = useSelect();
+  const { t } = useTranslation();
 
-    const { tables } = useTables();
+  const treeData = useMemo(() => {
+    return tables.map(({ id, name: parentName, fields }, i) => {
+      const children = fields?.map(({ name }, j) => ({
+        tableId: id,
+        id: `${j}`,
+        label: name,
+        value: name,
+        key: `${i}-${j}`,
+      }));
 
-    const { setSelectedElement } = useSelect();
+      return {
+        tableId: id,
+        id: `${i}`,
+        label: parentName,
+        value: parentName,
+        key: `${i}`,
+        children,
+      };
+    });
+  }, [tables]);
 
-    const [searchText, setSearchText] = useState("");
-    
-    const [filteredResult, setFilteredResult] = useState(
-        tables.map((t) => t.name),
-    );
+  return (
+    <TreeSelect
+      searchPosition="trigger"
+      dropdownStyle={{ maxHeight: 400, overflow: "auto" }}
+      treeData={treeData}
+      prefix={<IconSearch />}
+      emptyContent={<div className="p-3 popover-theme">{t("not_found")}</div>}
+      filterTreeNode
+      placeholder={t("search")}
+      onChange={(node) => {
+        const { tableId, id, children } = node;
 
-    const handleStringSearch = (value) => {
-        setFilteredResult(
-            tables.map((t) => t.name).filter((i) => i.includes(value)),
-        );
-    };
+        setSelectedElement((prev) => ({
+          ...prev,
+          id: tableId,
+          open: true,
+          element: ObjectType.TABLE,
+        }));
+        document
+          .getElementById(`scroll_table_${tableId}`)
+          .scrollIntoView({ behavior: "smooth" });
 
-    return (
-        <AutoComplete
-            data={filteredResult}
-            value={searchText}
-            showClear
-            prefix={<IconSearch />}
-            placeholder="Search..."
-            onSearch={(v) => handleStringSearch(v)}
-            emptyContent={
-                <div className="p-3 popover-theme">No tables found</div>
-            }
-            onChange={(v) => setSearchText(v)}
-            onSelect={(v) => {
-                const { id } = tables.find((t) => t.name === v);
-                setSelectedElement((prev) => ({
-                    ...prev,
-                    id: id,
-                    open: true,
-                }));
-                document
-                    .getElementById(`scroll_table_${id}`)
-                    .scrollIntoView({ behavior: "smooth" });
-            }}
-            className="w-full"
-        />
-    );
+        if (!children) {
+          document
+            .getElementById(`scroll_table_${tableId}_input_${id}`)
+            .focus();
+        }
+      }}
+      onChangeWithObject
+      className="w-full"
+    />
+  );
 }
