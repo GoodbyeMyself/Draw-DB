@@ -16,9 +16,6 @@ import FadeIn from "../animations/FadeIn";
 import SlideIn from "../animations/SlideIn";
 
 export default function LandingPage() {
-    
-    const [showSurvey, setShowSurvey] = useState(true);
-
     useEffect(() => {
         document.body.setAttribute("theme-mode", "light");
         document.title =
@@ -28,18 +25,6 @@ export default function LandingPage() {
     return (
         <div>
             <div className="flex flex-col h-screen">
-                {showSurvey && (
-                    <div className="text-white font-semibold py-1.5 px-4 text-sm text-center bg-gradient-to-r from-slate-700 from-10% via-slate-500 to-slate-700">
-                        <Link to="/survey" className="hover:underline">
-                            Help us improve! Share your feedback.
-                        </Link>
-                        <div className="float-right">
-                            <button onClick={() => setShowSurvey(false)}>
-                                <IconCrossStroked size="small" />
-                            </button>
-                        </div>
-                    </div>
-                )}
                 <Navbar />
                 <div className="flex-1 flex-col relative">
                     <div className="h-full md:hidden">
@@ -50,12 +35,11 @@ export default function LandingPage() {
                         <FadeIn duration={0.75}>
                             <div className="text-4xl font-bold tracking-wide">
                                 <h1 className="py-1 bg-gradient-to-r from-slate-700 from-10% via-slate-500 to-slate-700 inline-block text-transparent bg-clip-text">
-                                    Draw, Copy, and Paste
+                                    绘制，复制和粘贴
                                 </h1>
                             </div>
                             <div className="text-lg font-semibold mt-3">
-                                Free, simple, and intuitive database design tool
-                                and SQL generator.
+                                简单，直观的数据库设计工具和SQL生成器.
                             </div>
                         </FadeIn>
                         <div className="mt-4 flex gap-4 justify-center font-semibold">
@@ -67,13 +51,13 @@ export default function LandingPage() {
                                         .scrollIntoView({ behavior: "smooth" })
                                 }
                             >
-                                Learn more
+                                了解更多
                             </button>
                             <Link
                                 to="/editor"
                                 className="bg-slate-700 text-white px-4 py-2 rounded shadow-lg hover:bg-slate-600 transition-all duration-200"
                             >
-                                Try it for yourself
+                                进入编辑器
                             </Link>
                         </div>
                     </div>
@@ -83,28 +67,28 @@ export default function LandingPage() {
                 <div className="bg-zinc-100 py-10 px-24 md:px-8 rounded-b-[40px]">
                     <FadeIn duration={1}>
                         <div className="text-2xl text-slate-900 font-bold text-center mb-5 md:hidden">
-                            Entity-Relationship diagrams simplified
+                            简化的实体关系图
                         </div>
                         <div className="md:hidden">
                             <Steps type="basic" current={3}>
                                 <Steps.Step
-                                    title="Create tables"
-                                    description="Define tables with the necessary fields and indices."
+                                    title="创建表"
+                                    description="定义带有必要字段和索引的表."
                                 />
                                 <Steps.Step
-                                    title="Add relationships"
-                                    description="Build relationships by simply dragging"
+                                    title="新建关系"
+                                    description="通过简单的拖动来建立关系"
                                 />
                                 <Steps.Step
-                                    title="Export"
-                                    description="Export to your preferred SQL flavor"
+                                    title="导出"
+                                    description="导出为您喜欢的 SQL 风格"
                                 />
                             </Steps>
                         </div>
                     </FadeIn>
                     <div className="mt-16 text-center w-[75%] sm:w-full mx-auto shadow-sm rounded-lg border px-12 py-8 bg-white">
                         <div className="text-2xl font-bold text-slate-900 mb-8">
-                            Why drawDB?
+                            drawDB 是什么 ?
                         </div>
                         <div className="grid grid-cols-3 gap-4 md:grid-cols-1 h-full">
                             <SlideIn
@@ -117,10 +101,10 @@ export default function LandingPage() {
                                         <i className="fa-solid fa-credit-card"></i>
                                     </span>
                                     <div className="mt-6 text-lg font-semibold text-slate-700">
-                                        Free
+                                    免费的
                                     </div>
                                     <div className="text-sm mt-3">
-                                        drawDB is completely free of charge.
+                                        drawDB 是完全免费的.
                                     </div>
                                 </div>
                             </SlideIn>
@@ -134,11 +118,10 @@ export default function LandingPage() {
                                         <i className="fa-solid fa-user-xmark"></i>
                                     </span>
                                     <div className="mt-6 text-lg font-semibold text-slate-700">
-                                        No registration
+                                        无需注册
                                     </div>
                                     <div className="text-sm mt-3">
-                                        No need to sign up or login. Just jump
-                                        into development.
+                                        无需注册或登录. 直接进入开发.
                                     </div>
                                 </div>
                             </SlideIn>
@@ -152,11 +135,10 @@ export default function LandingPage() {
                                         <i className="fa-regular fa-star "></i>
                                     </span>
                                     <div className="mt-6 text-lg font-semibold text-slate-700">
-                                        Simple to use
+                                        简单易用
                                     </div>
                                     <div className="text-sm mt-3">
-                                        Intuitive design that&apos;s easy to
-                                        navigate.
+                                        直观的设计，易于导航.
                                     </div>
                                 </div>
                             </SlideIn>
@@ -167,10 +149,10 @@ export default function LandingPage() {
             <div id="features" className="py-10 px-36 md:px-8">
                 <FadeIn duration={1}>
                     <div className="text-2xl font-bold text-center">
-                        Here is what drawDB offers
+                        这里有什么?
                     </div>
                     <div className="text-sm opacity-75 text-center">
-                        More coming soon...
+                        更多功能即将推出... 
                     </div>
                     <div className="grid grid-cols-3 gap-8 mt-6 md:grid-cols-2 sm:grid-cols-1">
                         {features.map((f, i) => (
@@ -193,102 +175,12 @@ export default function LandingPage() {
                     </div>
                 </FadeIn>
             </div>
-            <div className="bg-zinc-100 py-10 px-32 md:px-8 rounded-t-[40px]">
-                <div className="text-center text-2xl font-bold mb-4">
-                    We support these DBMS
-                </div>
-                <div className="grid grid-cols-5 place-items-center items-baseline sm:grid-cols-1 sm:gap-4">
-                    <img
-                        src={mysql_icon}
-                        className="opacity-70 hover:opacity-100 transition-all duration-300 h-20"
-                    />
-                    <img
-                        src={postgres_icon}
-                        className="opacity-70 hover:opacity-100 transition-all duration-300 h-12"
-                    />
-                    <img
-                        src={sqlite_icon}
-                        className="opacity-70 hover:opacity-100 transition-all duration-300 h-16"
-                    />
-                    <img
-                        src={mariadb_icon}
-                        className="opacity-70 hover:opacity-100 transition-all duration-300 h-16"
-                    />
-                    <img
-                        src={sql_server_icon}
-                        className="opacity-70 hover:opacity-100 transition-all duration-300 h-24"
-                    />
-                </div>
-                <div className="mt-16 mb-2 text-2xl font-bold text-center">
-                    Reach out to us
-                </div>
-                <div className="text-lg text-center mb-4">
-                    Your feedback is important to us. Share your thoughts and
-                    help us improve.
-                </div>
-                <div className="px-36 text-center md:px-8">
-                    <div className="w-full flex gap-8 sm:block">
-                        <Link
-                            to="/survey"
-                            className="w-full flex items-center gap-2 font-semibold justify-center bg-white shadow-lg px-9 py-2 rounded border border-zinc-200 hover:bg-zinc-100 transition-all duration-300"
-                        >
-                            <div>Take a survey</div>
-                            <i className="bi bi-arrow-right"></i>
-                        </Link>
-                        <Link
-                            to="/bug-report"
-                            className="sm:mt-2 w-full flex items-center gap-2 font-semibold justify-center bg-white shadow-lg px-9 py-2 rounded border border-zinc-200 hover:bg-zinc-100 transition-all duration-300"
-                        >
-                            <div>Report a bug</div>
-                            <i className="bi bi-arrow-right"></i>
-                        </Link>
-                    </div>
-                    <div className="mt-10">
-                        Connect with us at
-                        <a
-                            href="mailto:drawdb@outlook.com"
-                            className="text-blue-500 font-semibold hover:underline ms-1.5"
-                        >
-                            drawdb@outlook.com
-                        </a>
-                    </div>
-                    <div className="sm:block flex gap-3 justify-center">
-                        <a
-                            className="inline-block mt-2"
-                            href="https://github.com/drawdb-io/drawdb"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <div className="bg-zinc-800 hover:opacity-90 transition-all duration-300 flex items-center gap-4 px-14 py-4 rounded-lg">
-                                <img src={github} className="h-8" />
-                                <div className="text-lg text-white font-bold">
-                                    See the source
-                                </div>
-                            </div>
-                        </a>
-                        <a
-                            className="inline-block mt-2"
-                            href="https://discord.gg/BrjZgNrmR6"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <div className="bg-[#5865f2] hover:opacity-90 transition-all duration-300 flex items-center gap-4 px-8 py-4 rounded-lg">
-                                <img src={discord} className="h-8" />
-                                <div className="text-lg text-white font-bold">
-                                    Join us on Discord
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
             <div className="bg-red-700 py-1 text-center text-white text-xs font-semibold px-3">
-                Attention! The diagrams are saved in your browser. Before
-                clearing the browser make sure to back up your data.
+                注意! 图数据保存在浏览器中, 在清空浏览器之前，请务必备份您的数据.
             </div>
             <hr className="border-zinc-300" />
             <div className="text-center text-sm py-3">
-                &copy; 2024 <strong>drawDB</strong> - All right reserved.
+                &copy; <strong>drawDB</strong> - All right reserved.
             </div>
         </div>
     );
@@ -296,46 +188,42 @@ export default function LandingPage() {
 
 const features = [
     {
-        title: "Export",
+        title: "导出",
         content: (
             <div>
-                Export the DDL script to run on your database or export the
-                diagram as a JSON or an image.
+                导出DDL脚本在您的数据库上运行, 或导出为JSON或图像.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Import",
+        title: "导入",
         content: (
             <div>
-                Already have a diagram? Import a DDL script*, or a JSON file to
-                generate or a diagram.
+                已经有一个图表? 导入 DDL 脚本 *, 或 JSON 文件生成 或 导入图表.
             </div>
         ),
-        footer: "*Only MySQL supported, more coming soon.",
+        footer: "*仅支持 MySQL, 更多支持即将推出...",
     },
     {
-        title: "Customizable workspace",
-        content: (
+        title: "可定制的工作区",
+        content: (  
             <div>
-                Customize the UI to fit your preferences. Select the components
-                you want in your view.
+                自定义UI以适应您的偏好. 选择您想要在视图中显示的组件.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Keyboard shortcuts",
+        title: "快捷键",
         content: (
             <div>
-                Speed up development with keyboard shortuts. See all available
-                shortcuts
+                使用快捷键加速开发. 查看所有可用的快捷键.
                 <Link
                     to="/shortcuts"
                     className="ms-1.5 text-blue-500 hover:underline"
                 >
-                    here
+                    这里
                 </Link>
                 .
             </div>
@@ -343,79 +231,72 @@ const features = [
         footer: "",
     },
     {
-        title: "Templates",
+        title: "模板",
         content: (
             <div>
-                Start off with pre-built templates. Get a quick start or get
-                inspirition for your design.
+                从预构建的模板开始. 获取快速开始或获取设计灵感.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Custom Templates",
+        title: "自定义模板",
         content: (
             <div>
-                Have boilerplate structures? Save time by saving them as
-                templates and load them when needed.
+                有样板结构? 保存它们作为模板, 并在需要时加载它们.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Robust editor",
+        title: "强大的编辑器",
         content: (
             <div>
-                Undo, redo, copy, paste, duplacate and more. Add tables, subject
-                areas, and notes.
+                撤销, 重做, 复制, 粘贴, 复制和更多. 添加表, 主题区域和注释.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Issue detection",
+        title: "错误检测",
         content: (
             <div>
-                Detect and tackle errors in the diagram to make sure the scripts
-                are correct.
+                检测和解决图表中的错误, 确保脚本正确.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Relational databases",
+        title: "关系型数据库",
         content: (
             <div>
-                We support 5 relational databases - MySQL, PostgreSQL, SQLite,
-                MariaDB, SQL Server.
+                我们支持5种关系型数据库 - MySQL, PostgreSQL, SQLite, MariaDB, SQL Server.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Object-Relational databases",
+        title: "对象关系型数据库",
         content: (
             <div>
-                Add custom types for object-relational databases, or create
-                custom JSON schemes and alias types.
+                添加自定义类型用于对象关系型数据库, 或创建自定义JSON方案和别名类型.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Presentation mode",
+        title: "演示模式",
         content: (
             <div>
-                Present your diagrams on a big screen during team meetings and
-                discussions.
+                在团队会议和讨论中展示您的图表.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Track todos",
+        title: "跟踪待办事项",
         content: (
-            <div>Keep track of tasks and mark them done when finished.</div>
+            <div>跟踪任务并标记完成.</div>
         ),
         footer: "",
     },

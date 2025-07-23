@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import Editor from "./pages/Editor";
-import Survey from "./pages/Survey";
-import BugReport from "./pages/BugReport";
 import Shortcuts from "./pages/Shortcuts";
 import Templates from "./pages/Templates";
 import LandingPage from "./pages/LandingPage";
@@ -26,26 +24,10 @@ export default function App() {
                         }
                     />
                     <Route
-                        path="/survey"
-                        element={
-                            <ThemedPage>
-                                <Survey />
-                            </ThemedPage>
-                        }
-                    />
-                    <Route
                         path="/shortcuts"
                         element={
                             <ThemedPage>
                                 <Shortcuts />
-                            </ThemedPage>
-                        }
-                    />
-                    <Route
-                        path="/bug-report"
-                        element={
-                            <ThemedPage>
-                                <BugReport />
                             </ThemedPage>
                         }
                     />

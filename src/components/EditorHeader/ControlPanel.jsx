@@ -1196,14 +1196,8 @@ export default function ControlPanel({
             "Ask us on discord": {
                 function: () =>
                     window.open("https://discord.gg/BrjZgNrmR6", "_blank"),
-            },
-            "Report a bug": {
-                function: () => window.open("/bug-report", "_blank"),
-            },
-            "Give feedback": {
-                function: () => window.open("/survey", "_blank"),
-            },
-        },
+            }
+        }
     };
 
     useHotkeys("ctrl+i, meta+i", fileImport, { preventDefault: true });

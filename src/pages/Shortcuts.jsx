@@ -121,7 +121,7 @@ export default function Shortcuts() {
                     onSelect={() => {}}
                 ></AutoComplete>
             </div>
-            <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 my-6 mx-20 sm:mx-6 gap-5 select-none">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-1 my-6 mx-20 sm:mx-6 gap-5 select-none">
                 {shortcuts.map((s, i) => (
                     <div className="p-3 card-theme rounded" key={i}>
                         <div className="flex justify-between sm:text-sm">

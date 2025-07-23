@@ -28,19 +28,19 @@ export default function Navbar() {
                                     .scrollIntoView({ behavior: "smooth" })
                             }
                         >
-                            Features
+                            特性
                         </Link>
                         <Link
                             to="/editor"
                             className="ms-6 text-lg font-semibold hover:text-indigo-700"
                         >
-                            Editor
+                            编辑器
                         </Link>
                         <Link
                             to="/templates"
                             className="ms-6 text-lg font-semibold hover:text-indigo-700"
                         >
-                            Templates
+                            模板
                         </Link>
                     </div>
                 </div>
