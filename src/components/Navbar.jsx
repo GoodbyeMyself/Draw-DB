@@ -10,18 +10,18 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="py-5 px-8 sm:px-4 flex justify-between items-center">
+            <div className="py-2 px-8 sm:px-4 flex justify-between items-center">
                 <div className="flex items-center justify-start">
                     <Link to="/">
                         <img
                             src={logo}
                             alt="logo"
-                            className="me-2 h-[48px] sm:h-[32px]"
+                            className="me-2 h-[24px] sm:h-[32px]"
                         />
                     </Link>
                     <div className="md:hidden">
                         <Link
-                            className="ms-6 text-lg font-semibold hover:text-indigo-700"
+                            className="ms-10 text-lg font-semibold"
                             onClick={() =>
                                 document
                                     .getElementById("features")
@@ -32,13 +32,13 @@ export default function Navbar() {
                         </Link>
                         <Link
                             to="/editor"
-                            className="ms-6 text-lg font-semibold hover:text-indigo-700"
+                            className="ms-10 text-lg font-semibold"
                         >
                             编辑器
                         </Link>
                         <Link
                             to="/templates"
-                            className="ms-6 text-lg font-semibold hover:text-indigo-700"
+                            className="ms-10 text-lg font-semibold"
                         >
                             模板
                         </Link>
@@ -73,21 +73,21 @@ export default function Navbar() {
                         setOpenMenu(false);
                     }}
                 >
-                    Features
+                    特性
                 </Link>
                 <hr />
                 <Link
                     to="/editor"
                     className="hover:bg-zinc-100 block p-3 text-base font-semibold"
                 >
-                    Editor
+                    编辑器
                 </Link>
                 <hr />
                 <Link
                     to="/templates"
                     className="hover:bg-zinc-100 block p-3 text-base font-semibold"
                 >
-                    Templates
+                    模板
                 </Link>
                 <hr />
             </SideSheet>

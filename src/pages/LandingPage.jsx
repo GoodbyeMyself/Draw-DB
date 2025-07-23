@@ -38,11 +38,11 @@ export default function LandingPage() {
                                     绘制，复制和粘贴
                                 </h1>
                             </div>
-                            <div className="text-lg font-semibold mt-3">
+                            <div className="text-lg font-semibold mt-5">
                                 简单，直观的数据库设计工具和SQL生成器.
                             </div>
                         </FadeIn>
-                        <div className="mt-4 flex gap-4 justify-center font-semibold">
+                        <div className="mt-8 flex gap-4 justify-center font-semibold">
                             <button
                                 className="bg-white shadow-lg px-9 py-2 rounded border border-zinc-200 hover:bg-zinc-100 transition-all duration-300"
                                 onClick={() =>
@@ -165,7 +165,9 @@ export default function LandingPage() {
                                     <div className="text-lg font-semibold mb-3">
                                         {f.title}
                                     </div>
-                                    {f.content}
+                                    <div className="text-sm opacity-80">
+                                        {f.content}
+                                    </div>
                                     <div className="mt-2 text-xs opacity-60">
                                         {f.footer}
                                     </div>
@@ -175,7 +177,7 @@ export default function LandingPage() {
                     </div>
                 </FadeIn>
             </div>
-            <div className="bg-red-700 py-1 text-center text-white text-xs font-semibold px-3">
+            <div className="bg-red-700 py-1 text-center text-white text-xs font-semibold px-3 mt-8 mb-8">
                 注意! 图数据保存在浏览器中, 在清空浏览器之前，请务必备份您的数据.
             </div>
             <hr className="border-zinc-300" />
@@ -191,7 +193,7 @@ const features = [
         title: "导出",
         content: (
             <div>
-                导出DDL脚本在您的数据库上运行, 或导出为JSON或图像.
+                导出 DDL脚本 在您的数据库上运行, 或导出为 JSON 或 图像.
             </div>
         ),
         footer: "",
@@ -200,16 +202,16 @@ const features = [
         title: "导入",
         content: (
             <div>
-                已经有一个图表? 导入 DDL 脚本 *, 或 JSON 文件生成 或 导入图表.
+                已经有一个图表 ? 导入 DDL 脚本 *, 或 JSON 文件生成 或 导入图表.
             </div>
         ),
-        footer: "*仅支持 MySQL, 更多支持即将推出...",
+        footer: "*仅支持 MySQL, 更多支持即将推出 ...",
     },
     {
         title: "可定制的工作区",
         content: (  
             <div>
-                自定义UI以适应您的偏好. 选择您想要在视图中显示的组件.
+                自定义 UI 以适应您的偏好. 选择您想要在视图中显示的组件.
             </div>
         ),
         footer: "",
@@ -218,14 +220,13 @@ const features = [
         title: "快捷键",
         content: (
             <div>
-                使用快捷键加速开发. 查看所有可用的快捷键.
+                使用快捷键加速开发. 
                 <Link
                     to="/shortcuts"
                     className="ms-1.5 text-blue-500 hover:underline"
                 >
-                    这里
+                    查看所有可用的快捷键.
                 </Link>
-                .
             </div>
         ),
         footer: "",
@@ -243,7 +244,7 @@ const features = [
         title: "自定义模板",
         content: (
             <div>
-                有样板结构? 保存它们作为模板, 并在需要时加载它们.
+                有样板结构 ? 保存它们作为模板, 并在需要时加载它们.
             </div>
         ),
         footer: "",
@@ -270,7 +271,7 @@ const features = [
         title: "关系型数据库",
         content: (
             <div>
-                我们支持5种关系型数据库 - MySQL, PostgreSQL, SQLite, MariaDB, SQL Server.
+                我们支持 5 种关系型数据库 - MySQL, PostgreSQL, SQLite, MariaDB, SQL Server.
             </div>
         ),
         footer: "",

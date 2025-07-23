@@ -43,18 +43,6 @@ export default function LayoutDropdown() {
                     >
                         Sidebar
                     </Dropdown.Item>
-                    <Dropdown.Item
-                        icon={
-                            layout.issues ? (
-                                <IconCheckboxTick />
-                            ) : (
-                                <div className="px-2" />
-                            )
-                        }
-                        onClick={() => invertLayout("issues")}
-                    >
-                        Issues
-                    </Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item
                         icon={<div className="px-2" />}

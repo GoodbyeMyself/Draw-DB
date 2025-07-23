@@ -1063,11 +1063,6 @@ export default function ControlPanel({
                 function: () =>
                     setLayout((prev) => ({ ...prev, sidebar: !prev.sidebar })),
             },
-            Issues: {
-                state: layout.issues ? "on" : "off",
-                function: () =>
-                    setLayout((prev) => ({ ...prev, issues: !prev.issues })),
-            },
             "Strict mode": {
                 state: settings.strictMode ? "off" : "on",
                 function: viewStrictMode,

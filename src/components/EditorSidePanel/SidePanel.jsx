@@ -3,7 +3,6 @@ import { Tab } from "../../data/constants";
 import { useLayout, useSelect } from "../../hooks";
 import RelationshipsTab from "./RelationshipsTab/RelationshipsTab";
 import TypesTab from "./TypesTab/TypesTab";
-import Issues from "./Issues";
 import AreasTab from "./AreasTab/AreasTab";
 import NotesTab from "./NotesTab/NotesTab";
 import TablesTab from "./TablesTab/TablesTab";
@@ -58,11 +57,6 @@ export default function SidePanel({ width, resize, setResize }) {
                         </div>
                     </Tabs>
                 </div>
-                {layout.issues && (
-                    <div className="mt-auto border-t-2 border-color shadow-inner">
-                        <Issues />
-                    </div>
-                )}
             </div>
             <div
                 className={`flex justify-center items-center p-1 h-auto hover-2 cursor-col-resize ${
