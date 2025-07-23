@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useLayoutEffect } from "react";
 import Editor from "./pages/Editor";
-import BugReport from "./pages/BugReport";
 import Templates from "./pages/Templates";
 import Shortcuts from "./pages/Shortcuts";
 import LandingPage from "./pages/LandingPage";
@@ -16,7 +15,6 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/editor" element={<Editor />} />
-                    <Route path="/bug-report" element={<BugReport />} />
                     <Route path="/templates" element={<Templates />} />
                     <Route path="/shortcuts" element={<Shortcuts />} />
                     <Route path="*" element={<NotFound />} />

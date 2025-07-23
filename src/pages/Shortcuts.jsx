@@ -62,7 +62,7 @@ export default function Shortcuts() {
                         <img
                             src={theme === "dark" ? logo_dark : logo_light}
                             alt="logo"
-                            className="me-2 sm:h-[28px] md:h-[46px] h-[48px]"
+                            className="me-2 sm:h-[24px] md:h-[24px] h-[24px]"
                         />
                     </Link>
                     <div className="ms-4 sm:text-sm xl:text-lg font-semibold">
@@ -121,7 +121,7 @@ export default function Shortcuts() {
                     onSelect={() => {}}
                 ></AutoComplete>
             </div>
-            <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 my-6 mx-20 sm:mx-6 gap-5 select-none">
+            <div className="grid sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 my-6 mx-60 sm:mx-6 gap-5 select-none">
                 {shortcuts.map((s, i) => (
                     <div className="p-3 card-theme rounded" key={i}>
                         <div className="flex justify-between sm:text-sm">
