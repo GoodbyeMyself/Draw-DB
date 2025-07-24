@@ -36,34 +36,47 @@ export default function Canvas() {
     const { t } = useTranslation();
 
     const canvasRef = useRef(null);
+
     const canvasContextValue = useCanvas();
+
     const {
         canvas: { viewBox },
         pointer,
     } = canvasContextValue;
 
-    const { tables, updateTable, relationships, addRelationship, database } =
-        useDiagram();
+    const { tables, updateTable, relationships, addRelationship, database } = useDiagram();
+
     const { setSaveState } = useSaveState();
+
     const { areas, updateArea } = useAreas();
+
     const { notes, updateNote } = useNotes();
+
     const { layout } = useLayout();
+
     const { settings } = useSettings();
+
     const { setUndoStack, setRedoStack } = useUndoRedo();
+
     const { transform, setTransform } = useTransform();
+
     const {
         selectedElement,
         setSelectedElement,
         bulkSelectedElements,
         setBulkSelectedElements,
     } = useSelect();
+
     const notDragging = {
         id: -1,
         type: ObjectType.NONE,
         grabOffset: { x: 0, y: 0 },
     };
+
     const [dragging, setDragging] = useState(notDragging);
+
     const [linking, setLinking] = useState(false);
+
     const [linkingLine, setLinkingLine] = useState({
         startTableId: -1,
         startFieldId: -1,
@@ -74,22 +87,27 @@ export default function Canvas() {
         endX: 0,
         endY: 0,
     });
+
     const [hoveredTable, setHoveredTable] = useState({
         tableId: null,
         fieldId: null,
     });
+
     const [panning, setPanning] = useState({
         isPanning: false,
         panStart: { x: 0, y: 0 },
         cursorStart: { x: 0, y: 0 },
     });
+
     const [areaResize, setAreaResize] = useState({ id: -1, dir: "none" });
+
     const [areaInitDimensions, setAreaInitDimensions] = useState({
         x: 0,
         y: 0,
         width: 0,
         height: 0,
     });
+
     const [bulkSelectRectPts, setBulkSelectRectPts] = useState({
         x1: 0,
         y1: 0,
@@ -97,6 +115,7 @@ export default function Canvas() {
         y2: 0,
         show: false,
     });
+    
     const [isClickingOnEmptyArea, setIsClickingOnEmptyArea] = useState(false);
 
     const collectSelectedElements = () => {
