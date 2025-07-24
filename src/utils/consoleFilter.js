@@ -25,6 +25,37 @@ const filterRules = [
         }
         return true;
     },
+    // React Router Future Flag Warning
+    (message) => {
+        if (typeof message === "string") {
+            return (
+                !message.includes("React Router Future Flag Warning") &&
+                !message.includes("React Router will begin wrapping state updates") &&
+                !message.includes("v7_startTransition")
+            );
+        }
+        return true;
+    },
+    // findDOMNode 废弃警告
+    (message) => {
+        if (typeof message === "string") {
+            return (
+                !message.includes("findDOMNode is deprecated") &&
+                !message.includes("Instead, add a ref directly to the element")
+            );
+        }
+        return true;
+    },
+    // React 更新函数中的副作用警告
+    (message) => {
+        if (typeof message === "string") {
+            return (
+                !message.includes("An update (setState, replaceState, or forceUpdate) was scheduled from inside an update function") &&
+                !message.includes("Update functions should be pure, with zero side-effects")
+            );
+        }
+        return true;
+    },
 ];
 
 // 检查消息是否应该被过滤
@@ -48,11 +79,11 @@ console.error = (...args) => {
 };
 
 // 重写 console.log（可选，用于调试）
-console.log = (...args) => {
-    if (shouldFilterMessage(...args)) {
-        originalConsoleLog.apply(console, args);
-    }
-};
+// console.log = (...args) => {
+//     if (shouldFilterMessage(...args)) {
+//         originalConsoleLog.apply(console, args);
+//     }
+// };
 
 // 导出过滤器函数，以便在其他地方使用
 export const addConsoleFilter = (filterRule) => {
