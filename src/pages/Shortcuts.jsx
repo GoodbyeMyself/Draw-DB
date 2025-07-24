@@ -34,7 +34,6 @@ export default function Shortcuts() {
 
     useEffect(() => {
         setTheme(localStorage.getItem("theme"));
-        document.title = "Shortcuts | drawDB";
         document.body.setAttribute("class", "theme");
     }, [setTheme]);
 

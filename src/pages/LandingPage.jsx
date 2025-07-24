@@ -15,11 +15,7 @@ import FadeIn from "../animations/FadeIn";
 export default function LandingPage() {
 
     useEffect(() => {
-
         document.body.setAttribute("theme-mode", "light");
-        document.title =
-            "drawDB | Online database diagram editor and SQL generator";
-
     }, []);
 
     return (
@@ -43,10 +39,8 @@ export default function LandingPage() {
                                 <h1 className="text-[42px] md:text-3xl font-bold tracking-wide bg-linear-to-r from-sky-900 from-10% via-slate-500 to-[#12495e] inline-block text-transparent bg-clip-text">
                                     Draw, Copy, and Paste
                                 </h1>
-                                <div className="text-lg font-medium mt-1 sliding-vertical">
-                                    Free and open source, simple, and intuitive
-                                    database design editor, data-modeler, and
-                                    SQL generator.{" "}
+                                <div className="text-lg font-medium mt-2 sliding-vertical">
+                                    简单，直观的数据库设计编辑器，数据建模器 和 SQL 生成器. {" "}
                                     <span className="ms-2 sm:block sm:ms-0 text-slate-500 bg-white font-bold whitespace-nowrap">
                                         No sign up
                                     </span>
@@ -59,7 +53,7 @@ export default function LandingPage() {
                                 </div>
                             </div>
                         </FadeIn>
-                        <div className="mt-4 font-semibold md:mt-12">
+                        <div className="mt-12 font-semibold md:mt-12">
                             <button
                                 className="py-2 mb-4 xl:mb-0 mr-4 transition-all duration-300 bg-white border rounded-full shadow-lg px-6 border-zinc-200 hover:bg-zinc-100 text-sm"
                                 onClick={() =>
@@ -68,7 +62,7 @@ export default function LandingPage() {
                                         .scrollIntoView({ behavior: "smooth" })
                                 }
                             >
-                                Learn more
+                                了解更多
                             </button>
                             <Link
                                 to="/editor"
@@ -85,25 +79,14 @@ export default function LandingPage() {
             {/* Learn more */}
             <div id="learn-more">
                 <div className="bg-zinc-100 py-10 px-28 md:px-8">
-                    <div className="text-center mb-16">
-                        <div>
-                            <a
-                                href="https://warp.dev/drawdb"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <div className="font-semibold text-lg md:text-base">
-                                    Next-gen AI-powered intelligent terminal for
-                                    all platforms
-                                </div>
-                            </a>
+                    <div className="text-center">
+                        <div className="font-semibold text-lg md:text-base">
+                            全平台新一代 AI 智能终端
                         </div>
                     </div>
                     <div className="mt-16 w-[75%] text-center sm:w-full mx-auto shadow-xs rounded-2xl border p-6 bg-white space-y-3 mb-12">
-                        <div className="text-lg font-medium">
-                            Build diagrams with a few clicks, see the full
-                            picture, export SQL scripts, customize your editor,
-                            and more.
+                        <div className="text-lg font-medium mb-8 mt-4">
+                            只需单击几下即可构建图表、查看全图、导出 SQL 脚本、自定义编辑器等 .
                         </div>
                         <img src={screenshot} className="mx-auto" />
                     </div>
@@ -126,10 +109,10 @@ export default function LandingPage() {
             <div id="features" className="py-8 px-36 md:px-8">
                 <FadeIn duration={1}>
                     <div className="text-base font-medium text-center text-sky-900">
-                        More than just an editor
+                            不仅仅是一个编辑器
                     </div>
                     <div className="text-2xl mt-1 font-medium text-center">
-                        What drawDB has to offer
+                        我们能提供什么
                     </div>
                     <div className="grid grid-cols-3 gap-8 mt-10 md:grid-cols-2 sm:grid-cols-1">
                         {features.map((f, i) => (
@@ -142,7 +125,9 @@ export default function LandingPage() {
                                     <div className="text-lg font-semibold mb-3">
                                         {f.title}
                                     </div>
-                                    {f.content}
+                                    <div className="text-sm">
+                                        {f.content}
+                                    </div>
                                     <div className="mt-2 text-xs opacity-60">
                                         {f.footer}
                                     </div>
@@ -168,7 +153,7 @@ export default function LandingPage() {
             </svg>
             <div className="bg-zinc-100 py-8 px-32 md:px-8">
                 <div className="text-lg font-medium text-center mt-12 mb-6">
-                    Design for your database
+                    为您的数据库精心设计
                 </div>
                 <div className="grid grid-cols-3 place-items-center sm:grid-cols-1 sm:gap-10">
                     {dbs.map((s, i) => (
@@ -183,8 +168,7 @@ export default function LandingPage() {
             </div>
 
             <div className="bg-red-700 py-1 text-center text-white text-xs font-semibold px-3">
-                Attention! The diagrams are saved in your browser. Before
-                clearing the browser make sure to back up your data.
+                注意！图表保存在您的浏览器中。在清除浏览器数据之前，请确保备份您的数据.
             </div>
             <hr className="border-zinc-300" />
             <div className="text-center text-sm py-3">
@@ -205,46 +189,42 @@ const dbs = [
 
 const features = [
     {
-        title: "Export",
+        title: "导出",
         content: (
             <div>
-                Export the DDL script to run on your database or export the
-                diagram as a JSON or an image.
+                导出 DDL 脚本在您的数据库上运行或导出为 JSON 或图像。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Reverse engineer",
+        title: "逆向工程",
         content: (
             <div>
-                Already have a schema? Import a DDL script to generate a
-                diagram.
+                已经有一个模式 ？导入 DDL 脚本生成图表。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Customizable workspace",
+        title: "可定制的工作区",
         content: (
             <div>
-                Customize the UI to fit your preferences. Select the components
-                you want in your view.
+                自定义 UI 以适应您的偏好。选择您想要在视图中显示的组件。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Keyboard shortcuts",
+        title: "快捷键",
         content: (
             <div>
-                Speed up development with keyboard shortcuts. See all available
-                shortcuts
+                使用快捷键加速开发, 
                 <Link
                     to={`/shortcuts`}
                     className="ms-1.5 text-blue-500 hover:underline"
                 >
-                    here
+                    查看所有可用的快捷键
                 </Link>
                 .
             </div>
@@ -252,79 +232,72 @@ const features = [
         footer: "",
     },
     {
-        title: "Templates",
+        title: "模板",
         content: (
             <div>
-                Start off with pre-built templates. Get a quick start or get
-                inspiration for your design.
+                从预构建的模板开始。获取快速入门或获取设计灵感。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Custom Templates",
+        title: "自定义模板",
         content: (
             <div>
-                Have boilerplate structures? Save time by saving them as
-                templates and load them when needed.
+                保存画布内容作为模板并在需要时加载它们。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Robust editor",
+        title: "健壮的编辑器",
         content: (
             <div>
-                Undo, redo, copy, paste, duplicate and more. Add tables, subject
-                areas, and notes.
+                撤销、重做、复制、粘贴、复制和更多 ；添加表、主题区域和注释。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Issue detection",
+        title: "错误检测",
         content: (
             <div>
-                Detect and tackle errors in the diagram to make sure the scripts
-                are correct.
+                检测并解决图表中的错误，以确保脚本是正确的。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Relational databases",
+        title: "关系型数据库",
         content: (
             <div>
-                We support 5 relational databases - MySQL, PostgreSQL, SQLite,
-                MariaDB, SQL Server.
+                我们支持 5 种关系型数据库 - MySQL, PostgreSQL, SQLite, MariaDB, SQL Server.
             </div>
         ),
         footer: "",
     },
     {
-        title: "Object-Relational databases",
+        title: "对象关系型数据库",
         content: (
             <div>
-                Add custom types for object-relational databases, or create
-                custom JSON schemes.
+                添加自定义类型用于对象关系型数据库，或创建自定义 JSON 方案。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Presentation mode",
+        title: "演示模式",
         content: (
             <div>
-                Present your diagrams on a big screen during team meetings and
-                discussions.
+                在团队会议和讨论中展示您的图表。
             </div>
         ),
         footer: "",
     },
     {
-        title: "Track todos",
+        title: "跟踪待办事项",
         content: (
-            <div>Keep track of tasks and mark them done when finished.</div>
+            <div>跟踪任务并标记完成。</div>
         ),
         footer: "",
     },

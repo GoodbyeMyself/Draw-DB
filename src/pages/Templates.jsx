@@ -31,10 +31,6 @@ export default function Templates() {
         newWindow.name = "lt " + id;
     };
 
-    useEffect(() => {
-        document.title = "Templates | drawDB";
-    }, []);
-
     return (
         <div>
             <div className="min-h-screen">
