@@ -488,23 +488,26 @@ export default function ControlPanel({
     };
 
     const fileImport = () => setModal(MODAL.IMPORT);
-    const viewGrid = () =>
-        setSettings((prev) => ({ ...prev, showGrid: !prev.showGrid }));
-    const snapToGrid = () =>
-        setSettings((prev) => ({ ...prev, snapToGrid: !prev.snapToGrid }));
-    const zoomIn = () =>
-        setTransform((prev) => ({ ...prev, zoom: prev.zoom * 1.2 }));
-    const zoomOut = () =>
-        setTransform((prev) => ({ ...prev, zoom: prev.zoom / 1.2 }));
+
+    const viewGrid = () => setSettings((prev) => ({ ...prev, showGrid: !prev.showGrid }));
+
+    const snapToGrid = () => setSettings((prev) => ({ ...prev, snapToGrid: !prev.snapToGrid }));
+
+    const zoomIn = () => setTransform((prev) => ({ ...prev, zoom: prev.zoom * 1.2 }));
+
+    const zoomOut = () => setTransform((prev) => ({ ...prev, zoom: prev.zoom / 1.2 }));
+
     const viewStrictMode = () => {
         setSettings((prev) => ({ ...prev, strictMode: !prev.strictMode }));
     };
+
     const viewFieldSummary = () => {
         setSettings((prev) => ({
             ...prev,
             showFieldSummary: !prev.showFieldSummary,
         }));
     };
+
     const copyAsImage = () => {
         toPng(document.getElementById("canvas")).then(function (dataUrl) {
             const blob = dataURItoBlob(dataUrl);
@@ -518,8 +521,9 @@ export default function ControlPanel({
                 });
         });
     };
-    const resetView = () =>
-        setTransform((prev) => ({ ...prev, zoom: 1, pan: { x: 0, y: 0 } }));
+
+    const resetView = () => setTransform((prev) => ({ ...prev, zoom: 1, pan: { x: 0, y: 0 } }));
+
     const fitWindow = () => {
         const canvas = document
             .getElementById("canvas")
@@ -577,6 +581,7 @@ export default function ControlPanel({
             pan: { x: centerX, y: centerY },
         }));
     };
+
     const edit = () => {
         if (selectedElement.element === ObjectType.TABLE) {
             if (!layout.sidebar) {
@@ -632,6 +637,7 @@ export default function ControlPanel({
             }
         }
     };
+
     const del = () => {
         switch (selectedElement.element) {
             case ObjectType.TABLE:
@@ -647,6 +653,7 @@ export default function ControlPanel({
                 break;
         }
     };
+
     const duplicate = () => {
         switch (selectedElement.element) {
             case ObjectType.TABLE: {
@@ -681,6 +688,7 @@ export default function ControlPanel({
                 break;
         }
     };
+
     const copy = () => {
         switch (selectedElement.element) {
             case ObjectType.TABLE:
@@ -706,6 +714,7 @@ export default function ControlPanel({
                 break;
         }
     };
+
     const paste = () => {
         navigator.clipboard.readText().then((text) => {
             let obj = null;
@@ -739,16 +748,22 @@ export default function ControlPanel({
             }
         });
     };
+
     const cut = () => {
         copy();
         del();
     };
+
     const toggleDBMLEditor = () => {
         setLayout((prev) => ({ ...prev, dbmlEditor: !prev.dbmlEditor }));
     };
+
     const save = () => setSaveState(State.SAVING);
+
     const open = () => setModal(MODAL.OPEN);
+
     const saveDiagramAs = () => setModal(MODAL.SAVEAS);
+
     const fullscreen = useFullscreen();
 
     const menu = {
@@ -1486,34 +1501,55 @@ export default function ControlPanel({
     };
 
     useHotkeys("mod+i", fileImport, { preventDefault: true });
+
     useHotkeys("mod+z", undo, { preventDefault: true });
+
     useHotkeys("mod+y", redo, { preventDefault: true });
+
     useHotkeys("mod+s", save, { preventDefault: true });
+
     useHotkeys("mod+o", open, { preventDefault: true });
+
     useHotkeys("mod+e", edit, { preventDefault: true });
+
     useHotkeys("mod+d", duplicate, { preventDefault: true });
+
     useHotkeys("mod+c", copy, { preventDefault: true });
+
     useHotkeys("mod+v", paste, { preventDefault: true });
+
     useHotkeys("mod+x", cut, { preventDefault: true });
+
     useHotkeys("delete", del, { preventDefault: true });
+
     useHotkeys("mod+shift+g", viewGrid, { preventDefault: true });
+
     useHotkeys("mod+up", zoomIn, { preventDefault: true });
+
     useHotkeys("mod+down", zoomOut, { preventDefault: true });
+
     useHotkeys("mod+shift+m", viewStrictMode, {
         preventDefault: true,
     });
+
     useHotkeys("mod+shift+f", viewFieldSummary, {
         preventDefault: true,
     });
+
     useHotkeys("mod+shift+s", saveDiagramAs, {
         preventDefault: true,
     });
+
     useHotkeys("mod+alt+c", copyAsImage, { preventDefault: true });
+
     useHotkeys("enter", resetView, { preventDefault: true });
+
     useHotkeys("mod+h", () => window.open(socials.docs, "_blank"), {
         preventDefault: true,
     });
+
     useHotkeys("mod+alt+w", fitWindow, { preventDefault: true });
+
     useHotkeys("alt+e", toggleDBMLEditor, { preventDefault: true });
 
     return (
@@ -1550,7 +1586,7 @@ export default function ControlPanel({
     function toolbar() {
         return (
             <div
-                className="py-1.5 px-5 flex justify-between items-center rounded-xl my-1 sm:mx-1 xl:mx-6 select-none overflow-hidden toolbar-theme"
+                className="py-1.5 px-5 flex justify-between items-center rounded-xl my-1 sm:mx-1 xl:mx-3 select-none overflow-hidden toolbar-theme"
                 style={isRtl(i18n.language) ? { direction: "rtl" } : {}}
             >
                 <div className="flex justify-start items-center">
@@ -1780,16 +1816,16 @@ export default function ControlPanel({
     function header() {
         return (
             <nav
-                className="flex justify-between pt-1 items-center whitespace-nowrap"
+                className="flex justify-between pt-1 items-center whitespace-nowrap w-full"
                 style={isRtl(i18n.language) ? { direction: "rtl" } : {}}
             >
                 <div className="flex justify-start items-center">
                     <Link to="/">
                         <img
-                            width={54}
+                            width={32}
                             src={icon}
                             alt="logo"
-                            className="ms-7 min-w-[54px]"
+                            className="ms-7 min-w-[32px]"
                         />
                     </Link>
                     <div className="ms-1 mt-1">
@@ -1831,223 +1867,221 @@ export default function ControlPanel({
                                 <IconEdit />
                             )}
                         </div>
-                        <div className="flex justify-between items-center">
-                            <div className="flex justify-start text-md select-none me-2">
-                                {Object.keys(menu).map((category) => (
-                                    <Dropdown
-                                        key={category}
-                                        position="bottomLeft"
-                                        style={{
-                                            width: "240px",
-                                            direction: isRtl(i18n.language)
-                                                ? "rtl"
-                                                : "ltr",
-                                        }}
-                                        render={
-                                            <Dropdown.Menu className="menu max-h-[calc(100vh-80px)] overflow-auto">
-                                                {Object.keys(
-                                                    menu[category],
-                                                ).map((item, index) => {
-                                                    if (
-                                                        menu[category][item]
-                                                            .children
-                                                    ) {
-                                                        return (
-                                                            <Dropdown
-                                                                style={{
-                                                                    width: "150px",
-                                                                }}
-                                                                key={item}
-                                                                position="rightTop"
-                                                                render={
-                                                                    <Dropdown.Menu>
-                                                                        {menu[
-                                                                            category
-                                                                        ][
-                                                                            item
-                                                                        ].children.map(
-                                                                            (
-                                                                                e,
-                                                                                i,
-                                                                            ) => (
-                                                                                <Dropdown.Item
-                                                                                    key={
-                                                                                        i
-                                                                                    }
-                                                                                    onClick={
-                                                                                        e.function
-                                                                                    }
-                                                                                    className="flex justify-between"
-                                                                                >
-                                                                                    <span>
-                                                                                        {
-                                                                                            e.name
-                                                                                        }
-                                                                                    </span>
-                                                                                    {e.label && (
-                                                                                        <Tag
-                                                                                            size="small"
-                                                                                            color="light-blue"
-                                                                                        >
-                                                                                            {
-                                                                                                e.label
-                                                                                            }
-                                                                                        </Tag>
-                                                                                    )}
-                                                                                </Dropdown.Item>
-                                                                            ),
-                                                                        )}
-                                                                    </Dropdown.Menu>
-                                                                }
-                                                            >
-                                                                <Dropdown.Item
-                                                                    style={{
-                                                                        display:
-                                                                            "flex",
-                                                                        justifyContent:
-                                                                            "space-between",
-                                                                        alignItems:
-                                                                            "center",
-                                                                    }}
-                                                                    onClick={
-                                                                        menu[
-                                                                            category
-                                                                        ][item]
-                                                                            .function
-                                                                    }
-                                                                >
-                                                                    {t(item)}
-
-                                                                    {isRtl(
-                                                                        i18n.language,
-                                                                    ) ? (
-                                                                        <IconChevronLeft />
-                                                                    ) : (
-                                                                        <IconChevronRight />
-                                                                    )}
-                                                                </Dropdown.Item>
-                                                            </Dropdown>
-                                                        );
-                                                    }
-                                                    if (
-                                                        menu[category][item]
-                                                            .warning
-                                                    ) {
-                                                        return (
-                                                            <Popconfirm
-                                                                key={index}
-                                                                title={
-                                                                    menu[
-                                                                        category
-                                                                    ][item]
-                                                                        .warning
-                                                                        .title
-                                                                }
-                                                                content={
-                                                                    menu[
-                                                                        category
-                                                                    ][item]
-                                                                        .warning
-                                                                        .message
-                                                                }
-                                                                onConfirm={
-                                                                    menu[
-                                                                        category
-                                                                    ][item]
-                                                                        .function
-                                                                }
-                                                                position="right"
-                                                                okText={t(
-                                                                    "confirm",
-                                                                )}
-                                                                cancelText={t(
-                                                                    "cancel",
-                                                                )}
-                                                            >
-                                                                <Dropdown.Item>
-                                                                    {t(item)}
-                                                                </Dropdown.Item>
-                                                            </Popconfirm>
-                                                        );
-                                                    }
+                        <div className="flex justify-start text-sm select-none me-2">
+                            {Object.keys(menu).map((category) => (
+                                <Dropdown
+                                    key={category}
+                                    position="bottomLeft"
+                                    style={{
+                                        width: "240px",
+                                        direction: isRtl(i18n.language)
+                                            ? "rtl"
+                                            : "ltr",
+                                    }}
+                                    render={
+                                        <Dropdown.Menu className="menu max-h-[calc(100vh-80px)] overflow-auto">
+                                            {Object.keys(
+                                                menu[category],
+                                            ).map((item, index) => {
+                                                if (
+                                                    menu[category][item]
+                                                        .children
+                                                ) {
                                                     return (
-                                                        <Dropdown.Item
-                                                            key={index}
-                                                            onClick={
-                                                                menu[category][
-                                                                    item
-                                                                ].function
+                                                        <Dropdown
+                                                            style={{
+                                                                width: "150px",
+                                                            }}
+                                                            key={item}
+                                                            position="rightTop"
+                                                            render={
+                                                                <Dropdown.Menu>
+                                                                    {menu[
+                                                                        category
+                                                                    ][
+                                                                        item
+                                                                    ].children.map(
+                                                                        (
+                                                                            e,
+                                                                            i,
+                                                                        ) => (
+                                                                            <Dropdown.Item
+                                                                                key={
+                                                                                    i
+                                                                                }
+                                                                                onClick={
+                                                                                    e.function
+                                                                                }
+                                                                                className="flex justify-between"
+                                                                            >
+                                                                                <span>
+                                                                                    {
+                                                                                        e.name
+                                                                                    }
+                                                                                </span>
+                                                                                {e.label && (
+                                                                                    <Tag
+                                                                                        size="small"
+                                                                                        color="light-blue"
+                                                                                    >
+                                                                                        {
+                                                                                            e.label
+                                                                                        }
+                                                                                    </Tag>
+                                                                                )}
+                                                                            </Dropdown.Item>
+                                                                        ),
+                                                                    )}
+                                                                </Dropdown.Menu>
                                                             }
-                                                            style={
-                                                                menu[category][
-                                                                    item
-                                                                ].shortcut && {
+                                                        >
+                                                            <Dropdown.Item
+                                                                style={{
                                                                     display:
                                                                         "flex",
                                                                     justifyContent:
                                                                         "space-between",
                                                                     alignItems:
                                                                         "center",
+                                                                }}
+                                                                onClick={
+                                                                    menu[
+                                                                        category
+                                                                    ][item]
+                                                                        .function
                                                                 }
-                                                            }
-                                                        >
-                                                            <div className="w-full flex items-center justify-between">
-                                                                <div>
-                                                                    {t(item)}
-                                                                </div>
-                                                                <div className="flex items-center gap-1">
-                                                                    {menu[
-                                                                        category
-                                                                    ][item]
-                                                                        .shortcut && (
-                                                                        <div className="text-gray-400">
-                                                                            {
-                                                                                menu[
-                                                                                    category
-                                                                                ][
-                                                                                    item
-                                                                                ]
-                                                                                    .shortcut
-                                                                            }
-                                                                        </div>
-                                                                    )}
-                                                                    {menu[
-                                                                        category
-                                                                    ][item]
-                                                                        .state &&
-                                                                        menu[
-                                                                            category
-                                                                        ][item]
-                                                                            .state}
-                                                                </div>
-                                                            </div>
-                                                        </Dropdown.Item>
+                                                            >
+                                                                {t(item)}
+
+                                                                {isRtl(
+                                                                    i18n.language,
+                                                                ) ? (
+                                                                    <IconChevronLeft />
+                                                                ) : (
+                                                                    <IconChevronRight />
+                                                                )}
+                                                            </Dropdown.Item>
+                                                        </Dropdown>
                                                     );
-                                                })}
-                                            </Dropdown.Menu>
-                                        }
-                                    >
-                                        <div className="px-3 py-1 hover-2 rounded-sm">
-                                            {t(category)}
-                                        </div>
-                                    </Dropdown>
-                                ))}
-                            </div>
-                            <Button
-                                size="small"
-                                type="tertiary"
-                                icon={
-                                    saveState === State.LOADING ||
-                                    saveState === State.SAVING ? (
-                                        <Spin size="small" />
-                                    ) : null
-                                }
-                            >
-                                {getState()}
-                            </Button>
+                                                }
+                                                if (
+                                                    menu[category][item]
+                                                        .warning
+                                                ) {
+                                                    return (
+                                                        <Popconfirm
+                                                            key={index}
+                                                            title={
+                                                                menu[
+                                                                    category
+                                                                ][item]
+                                                                    .warning
+                                                                    .title
+                                                            }
+                                                            content={
+                                                                menu[
+                                                                    category
+                                                                ][item]
+                                                                    .warning
+                                                                    .message
+                                                            }
+                                                            onConfirm={
+                                                                menu[
+                                                                    category
+                                                                ][item]
+                                                                    .function
+                                                            }
+                                                            position="right"
+                                                            okText={t(
+                                                                "confirm",
+                                                            )}
+                                                            cancelText={t(
+                                                                "cancel",
+                                                            )}
+                                                        >
+                                                            <Dropdown.Item>
+                                                                {t(item)}
+                                                            </Dropdown.Item>
+                                                        </Popconfirm>
+                                                    );
+                                                }
+                                                return (
+                                                    <Dropdown.Item
+                                                        key={index}
+                                                        onClick={
+                                                            menu[category][
+                                                                item
+                                                            ].function
+                                                        }
+                                                        style={
+                                                            menu[category][
+                                                                item
+                                                            ].shortcut && {
+                                                                display:
+                                                                    "flex",
+                                                                justifyContent:
+                                                                    "space-between",
+                                                                alignItems:
+                                                                    "center",
+                                                            }
+                                                        }
+                                                    >
+                                                        <div className="w-full flex items-center justify-between">
+                                                            <div>
+                                                                {t(item)}
+                                                            </div>
+                                                            <div className="flex items-center gap-1">
+                                                                {menu[
+                                                                    category
+                                                                ][item]
+                                                                    .shortcut && (
+                                                                    <div className="text-gray-400">
+                                                                        {
+                                                                            menu[
+                                                                                category
+                                                                            ][
+                                                                                item
+                                                                            ]
+                                                                                .shortcut
+                                                                        }
+                                                                    </div>
+                                                                )}
+                                                                {menu[
+                                                                    category
+                                                                ][item]
+                                                                    .state &&
+                                                                    menu[
+                                                                        category
+                                                                    ][item]
+                                                                        .state}
+                                                            </div>
+                                                        </div>
+                                                    </Dropdown.Item>
+                                                );
+                                            })}
+                                        </Dropdown.Menu>
+                                    }
+                                >
+                                    <div className="px-3 py-1">
+                                        {t(category)}
+                                    </div>
+                                </Dropdown>
+                            ))}
                         </div>
                     </div>
                 </div>
+                <Button
+                    size="small"
+                    type="tertiary"
+                    icon={
+                        saveState === State.LOADING ||
+                        saveState === State.SAVING ? (
+                            <Spin size="small" />
+                        ) : null
+                    }
+                >
+                    {getState()}
+                </Button>
             </nav>
         );
     }
