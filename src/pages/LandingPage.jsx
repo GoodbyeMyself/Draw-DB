@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SimpleCanvas from "../components/SimpleCanvas";
 import Navbar from "../components/Navbar";
@@ -9,40 +9,17 @@ import sqlite_icon from "../assets/sqlite.png";
 import mariadb_icon from "../assets/mariadb.png";
 import oraclesql_icon from "../assets/oraclesql.png";
 import sql_server_icon from "../assets/sql-server.png";
-import discord from "../assets/discord.png";
-import github from "../assets/github.png";
-import warp from "../assets/warp.png";
 import screenshot from "../assets/screenshot.png";
 import FadeIn from "../animations/FadeIn";
-import axios from "axios";
-import { languages } from "../i18n/i18n";
-import { Tweet } from "react-tweet";
-import { socials } from "../data/socials";
-
-function shortenNumber(number) {
-    if (number < 1000) return number;
-
-    if (number >= 1000 && number < 1_000_000)
-        return `${(number / 1000).toFixed(1)}k`;
-}
 
 export default function LandingPage() {
-    const [stats, setStats] = useState({ stars: 18000, forks: 1200 });
 
     useEffect(() => {
-        const fetchStats = async () => {
-            await axios
-                .get(
-                    "https://api.github-star-counter.workers.dev/user/drawdb-io",
-                )
-                .then((res) => setStats(res.data));
-        };
 
         document.body.setAttribute("theme-mode", "light");
         document.title =
             "drawDB | Online database diagram editor and SQL generator";
 
-        fetchStats();
     }, []);
 
     return (
@@ -84,7 +61,7 @@ export default function LandingPage() {
                         </FadeIn>
                         <div className="mt-4 font-semibold md:mt-12">
                             <button
-                                className="py-3 mb-4 xl:mb-0 mr-4 transition-all duration-300 bg-white border rounded-full shadow-lg px-9 border-zinc-200 hover:bg-zinc-100"
+                                className="py-2 mb-4 xl:mb-0 mr-4 transition-all duration-300 bg-white border rounded-full shadow-lg px-6 border-zinc-200 hover:bg-zinc-100 text-sm"
                                 onClick={() =>
                                     document
                                         .getElementById("learn-more")
@@ -95,9 +72,9 @@ export default function LandingPage() {
                             </button>
                             <Link
                                 to="/editor"
-                                className="inline-block py-3 text-white transition-all duration-300 rounded-full shadow-lg bg-sky-900 ps-7 pe-6 hover:bg-sky-800"
+                                className="inline-block py-2 text-white transition-all duration-300 rounded-full shadow-lg bg-sky-900 ps-5 pe-4 hover:bg-sky-800 text-sm"
                             >
-                                Try it for yourself{" "}
+                                进入编辑器 {" "}
                                 <i className="bi bi-arrow-right ms-1"></i>
                             </Link>
                         </div>
