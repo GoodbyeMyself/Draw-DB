@@ -33,7 +33,6 @@ import ImportDiagram from "./ImportDiagram";
 import ImportSource from "./ImportSource";
 import SetTableWidth from "./SetTableWidth";
 import Language from "./Language";
-import Share from "./Share";
 import CodeEditor from "../../CodeEditor";
 import { useTranslation } from "react-i18next";
 import { importSQL } from "../../../utils/importSQL";
@@ -341,8 +340,6 @@ export default function Modal({
         return <SetTableWidth />;
       case MODAL.LANGUAGE:
         return <Language />;
-      case MODAL.SHARE:
-        return <Share title={title} setModal={setModal} />;
       default:
         return <></>;
     }

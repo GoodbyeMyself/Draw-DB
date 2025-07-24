@@ -351,7 +351,9 @@ export default function Table(props) {
                                 {field(e, i)}
                             </Popover>
                         ) : (
-                            field(e, i)
+                            <div key={i}>
+                                {field(e, i)}
+                            </div>
                         );
                     })}
                 </div>
