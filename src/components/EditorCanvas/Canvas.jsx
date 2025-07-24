@@ -13,6 +13,7 @@ import Table from "./Table";
 import Area from "./Area";
 import Relationship from "./Relationship";
 import Note from "./Note";
+import Thumbnail from "../Thumbnail";
 import {
     useCanvas,
     useSettings,
@@ -797,8 +798,28 @@ export default function Canvas() {
                     )}
                 </svg>
             </div>
+            
+            {/* 缩略图组件 */}
+            {settings.showThumbnail && (
+                <div className="fixed bottom-4 right-4 w-48 h-32 bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden z-10">
+                    <div className="absolute top-1 left-1 text-xs text-gray-500 bg-white/80 px-1 rounded">
+                        缩略图
+                    </div>
+                    <Thumbnail
+                        diagram={{
+                            tables: tables,
+                            relationships: relationships,
+                            subjectAreas: areas,
+                            notes: notes,
+                        }}
+                        i="canvas-thumbnail"
+                        theme={settings.mode}
+                    />
+                </div>
+            )}
+            
             {settings.showDebugCoordinates && (
-                <div className="fixed flex flex-col flex-wrap gap-6 bg-[rgba(var(--semi-grey-1),var(--tw-bg-opacity))]/40 border border-color bottom-4 right-4 p-4 rounded-xl backdrop-blur-xs pointer-events-none select-none">
+                <div className="fixed flex flex-col flex-wrap gap-6 bg-[rgba(var(--semi-grey-1),var(--tw-bg-opacity))]/40 border border-color bottom-4 right-56 p-4 rounded-xl backdrop-blur-xs pointer-events-none select-none">
                     <table className="table-auto grow">
                         <thead>
                             <tr>

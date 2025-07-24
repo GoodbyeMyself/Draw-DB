@@ -61,6 +61,7 @@ const zh = {
     panning: "画布可拖动",
     show_relationship_labels: "显示关系标签",
     show_debug_coordinates: "显示调试坐标",
+    show_thumbnail: "显示缩略图",
     transform: "变换",
     viewbox: "视图框",
     cursor_coordinates: "光标坐标",

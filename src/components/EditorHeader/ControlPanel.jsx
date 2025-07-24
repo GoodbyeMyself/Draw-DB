@@ -1407,6 +1407,18 @@ export default function ControlPanel({
                         showDebugCoordinates: !prev.showDebugCoordinates,
                     })),
             },
+            show_thumbnail: {
+                state: settings.showThumbnail ? (
+                    <i className="bi bi-toggle-on" />
+                ) : (
+                    <i className="bi bi-toggle-off" />
+                ),
+                function: () =>
+                    setSettings((prev) => ({
+                        ...prev,
+                        showThumbnail: !prev.showThumbnail,
+                    })),
+            },
             theme: {
                 children: [
                     {

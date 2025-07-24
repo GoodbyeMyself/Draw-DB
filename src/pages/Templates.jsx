@@ -81,7 +81,6 @@ export default function Templates() {
                                             <Thumbnail
                                                 diagram={t}
                                                 i={"1" + i}
-                                                zoom={0.3}
                                                 theme="light"
                                             />
                                         </div>
@@ -120,7 +119,6 @@ export default function Templates() {
                                                 <Thumbnail
                                                     diagram={c}
                                                     i={"2" + i}
-                                                    zoom={0.3}
                                                 />
                                             </div>
                                             <div className="px-4 py-3 w-full">

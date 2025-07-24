@@ -17,7 +17,7 @@ export default function New({ selectedTemplateId, setSelectedTemplateId }) {
             selectedTemplateId === 0 ? "border-blue-400" : "border-zinc-400"
           }`}
         >
-          <Thumbnail i={0} diagram={{}} zoom={0.24} theme={settings.mode} />
+          <Thumbnail i={0} diagram={{}} theme={settings.mode} />
         </div>
         <div className="text-center mt-1">{t("blank")}</div>
       </div>
@@ -33,7 +33,6 @@ export default function New({ selectedTemplateId, setSelectedTemplateId }) {
             <Thumbnail
               i={temp.id}
               diagram={temp}
-              zoom={0.24}
               theme={settings.mode}
             />
           </div>
