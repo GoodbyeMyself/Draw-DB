@@ -96,6 +96,7 @@ export default function Canvas() {
     y2: 0,
     show: false,
   });
+  const [isClickingOnEmptyArea, setIsClickingOnEmptyArea] = useState(false);
 
   const collectSelectedElements = () => {
     const rect = getRectFromEndpoints(bulkSelectRectPts);
@@ -172,6 +173,57 @@ export default function Canvas() {
     });
 
     setBulkSelectedElements(elements);
+  };
+
+  // 处理鼠标离开画布的事件
+  const handlePointerLeave = () => {
+    // 如果正在拖动视角，则终止拖动
+    if (panning.isPanning || isClickingOnEmptyArea) {
+      if (panning.isPanning && didPan()) {
+        setSaveState(State.SAVING);
+      }
+      setPanning((old) => ({ ...old, isPanning: false }));
+      setIsClickingOnEmptyArea(false);
+      pointer.setStyle("default");
+    }
+
+    // 如果正在拖动元素，则终止拖动
+    if (isDragging()) {
+      setDragging(notDragging);
+    }
+
+    // 如果正在调整区域大小，则终止调整
+    if (areaResize.id !== -1) {
+      setAreaResize({ id: -1, dir: "none" });
+      setAreaInitDimensions({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+      });
+    }
+
+    // 如果正在链接，则终止链接
+    if (linking) {
+      setLinking(false);
+    }
+
+    // 如果正在显示选择矩形，则隐藏
+    if (bulkSelectRectPts.show) {
+      setBulkSelectRectPts((prev) => ({
+        ...prev,
+        show: false,
+      }));
+    }
+
+    // 重置鼠标样式
+    pointer.setStyle("default");
+
+    // 清除悬停状态
+    setHoveredTable({
+      tableId: null,
+      fieldId: null,
+    });
   };
 
   const getElement = (element) => {
@@ -320,7 +372,6 @@ export default function Canvas() {
     if (areaResize.id !== -1) {
       if (areaResize.dir === "none") return;
       let newDims = { ...areaInitDimensions };
-      setPanning((old) => ({ ...old, isPanning: false }));
       const { x, y } = coordinatesAfterSnappingToGrid(pointer.spaces.diagram);
 
       switch (areaResize.dir) {
@@ -379,6 +430,21 @@ export default function Canvas() {
     const isMouseMiddleButton = e.button === 1;
 
     if (isMouseLeftButton) {
+      // 检查是否点击在空白区域
+      const clickedOnElement = e.target.closest('[data-element-type]');
+      if (!clickedOnElement) {
+        // 点击在空白区域，启用拖动视角
+        setIsClickingOnEmptyArea(true);
+        setPanning({
+          isPanning: true,
+          panStart: transform.pan,
+          cursorStart: pointer.spaces.screen,
+        });
+        pointer.setStyle("grabbing");
+        return;
+      }
+      
+      // 点击在元素上，保持原有的选择逻辑
       setBulkSelectRectPts({
         x1: pointer.spaces.diagram.x,
         y1: pointer.spaces.diagram.y,
@@ -476,6 +542,7 @@ export default function Canvas() {
       setSaveState(State.SAVING);
     }
     setPanning((old) => ({ ...old, isPanning: false }));
+    setIsClickingOnEmptyArea(false);
     pointer.setStyle("default");
 
     if (linking) handleLinking();
@@ -624,6 +691,7 @@ export default function Canvas() {
           onPointerMove={handlePointerMove}
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerLeave}
           className="absolute w-full h-full touch-none"
           viewBox={`${viewBox.left} ${viewBox.top} ${viewBox.width} ${viewBox.height}`}
         >
