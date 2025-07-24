@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, createContext } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import ControlPanel from "./EditorHeader/ControlPanel";
 import Canvas from "./EditorCanvas/Canvas";
 import { CanvasContextProvider } from "../context/CanvasContext";
@@ -25,10 +25,9 @@ import { databases } from "../data/databases";
 import { isRtl } from "../i18n/utils/rtl";
 import { useSearchParams } from "react-router-dom";
 import { get } from "../api/gists";
+import { IdContext } from "../context/IdContext";
 
-export const IdContext = createContext({ gistId: "", setGistId: () => {} });
-
-const SIDEPANEL_MIN_WIDTH = 384;
+const SIDEPANEL_MIN_WIDTH = 384
 
 export default function WorkSpace() {
   const [id, setId] = useState(0);
@@ -60,6 +59,10 @@ export default function WorkSpace() {
   const { undoStack, redoStack, setUndoStack, setRedoStack } = useUndoRedo();
   const { t, i18n } = useTranslation();
   let [searchParams, setSearchParams] = useSearchParams();
+  
+  // 添加防抖定时器引用
+  const saveTimeoutRef = useRef(null);
+
   const handleResize = (e) => {
     if (!resize) return;
     const w = isRtl(i18n.language) ? window.innerWidth - e.clientX : e.clientX;
@@ -379,8 +382,23 @@ export default function WorkSpace() {
       return;
 
     if (settings.autosave) {
-      setSaveState(State.SAVING);
+      // 清除之前的定时器
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      
+      // 设置新的定时器，3秒后触发保存
+      saveTimeoutRef.current = setTimeout(() => {
+        setSaveState(State.SAVING);
+      }, 3000);
     }
+    
+    // 清理函数
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
   }, [
     undoStack,
     redoStack,
